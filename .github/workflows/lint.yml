@@ -1,0 +1,20 @@
+name: Code Lint
+on: push
+jobs:
+  run-linter:
+    name: Run Linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install Node.js dependencies
+        run: yarn install
+      - name: Run ESLint
+        uses: wearerequired/lint-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          eslint: true
